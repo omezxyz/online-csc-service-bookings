@@ -854,10 +854,10 @@ function Tracker() {
             <div>
               <div className="text-sm text-slate-600">Service</div>
               <div className="font-medium">{result?.service?.name}</div>
-              <div className="text-sm text-slate-600 mt-3">Scheduled</div>
+{/*               <div className="text-sm text-slate-600 mt-3">Scheduled</div>
               <div className="font-medium">
                 {result?.schedule?.date} at {result?.schedule?.time}
-              </div>
+              </div> */}
             </div>
             <div>
               <div className="text-sm text-slate-600">Applicant</div>
