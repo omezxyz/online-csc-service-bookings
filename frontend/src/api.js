@@ -1,5 +1,5 @@
 
-const API = window.__API__ || 'http://localhost:4000/api';
+const API = window.__API__ || 'https://online-csc-service-bookings.onrender.com/api';
 
 // Existing functions
 export async function getServices() {
