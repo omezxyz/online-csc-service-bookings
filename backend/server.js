@@ -7,7 +7,6 @@ import bcrypt from 'bcryptjs';
 import { connectDB } from './config/db.js';
 import Service from './models/Service.js';
 import Admin from './models/Admin.js';
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import authRoutes from './routes/auth.js';
 import servicesRoutes from './routes/services.js';
 import requestsRoutes from './routes/requests.js';
