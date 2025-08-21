@@ -257,7 +257,7 @@ function Footer({setRoute}) {
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/+919531130811" // replace with your number
+          href="https://wa.me/+918011891618" // replace with your number
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 w-14 h-14 rounded-full shadow-lg items-center justify-center transition-all duration-300
@@ -278,7 +278,7 @@ function Footer({setRoute}) {
 
         {/* WhatsApp Button for Mobile (inside footer) */}
         <a
-          href="https://wa.me/919999999999"
+          href="https://wa.me/+918011891618"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 md:hidden"
