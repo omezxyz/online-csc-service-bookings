@@ -1,5 +1,6 @@
 
-const API = window.__API__ || 'https://online-csc-service-bookings.onrender.com/api';
+// const API = window.__API__ || 'https://online-csc-service-bookings.onrender.com/api';
+const API = import.meta.env.VITE_API_URL;
 
 // Existing functions
 export async function getServices() {
