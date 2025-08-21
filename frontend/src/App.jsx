@@ -329,7 +329,7 @@ function Hero({ onGetStarted }) {
           </a>
         </div>
       </motion.div>
-      <div className="absolute -right-24 -bottom-24 w-72 h-72 rounded-full bg-white/10 blur-3xl" />
+       <div className="absolute -right-24 -bottom-24 w-72 h-72 rounded-full bg-white/10 blur-3xl pointer-events-none" />
     </section>
   );
 }
@@ -368,7 +368,7 @@ function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="mt-12">
+    <section id="why-us" className="mt-12 scroll-mt-24">
       <section className="bg-neutral-150 py-8 px-4 sm:px-6 md:px-10 rounded-2xl shadow-sm">
     <div className="max-w-2xl mx-auto text-center">
       <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight">
