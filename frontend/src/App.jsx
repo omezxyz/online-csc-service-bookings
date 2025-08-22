@@ -48,13 +48,27 @@ export default function App() {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [loadingServices, setLoadingServices] = useState(true);
 
-  useEffect(() => {
-    getServices().then((s) => {
+useEffect(() => {
+  async function fetchServices() {
+    try {
+      setLoadingServices(true);
+
+      // simulate 2 second delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      const s = await getServices();
       setServices(s);
       setSelectedService(s[0]?._id || null);
-    });
-  }, []);
+    } catch (err) {
+      console.error("Failed to fetch services", err);
+    } finally {
+      setLoadingServices(false);
+    }
+  }
+  fetchServices();
+}, []);
 
   return (
     <HelmetProvider>
@@ -69,7 +83,7 @@ export default function App() {
         <meta property="og:title" content="Online Services | Fast & Reliable" />
         <meta property="og:description" content="Book PAN, Scholarship, Caste & Income certificates online quickly." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourdomain.com" />
+        <meta property="og:url" content="https://online-application-services-bookings.onrender.com" />
         <meta property="og:image" content={socialImage} />
 
         {/* Twitter card */}
@@ -106,12 +120,20 @@ export default function App() {
               <Hero onGetStarted={() => setRoute("book")} />
               <ProcessFlow />
               <WhyUs />
+                      {loadingServices ? (
+      <div className="flex justify-center items-center py-20">
+        {/* <Loader2 className="w-8 h-8 animate-spin text-slate-600" /> */}
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+        <span className="ml-2">Loading services...</span>
+      </div>
+    ) :(
               <ServicesGrid
                 services={services}
                 selectedService={selectedService}
                 onSelect={setSelectedService}
                 onBook={() => setRoute("book")}
               />
+              )}
             </motion.section>
           )}
 
@@ -128,6 +150,7 @@ export default function App() {
                 services={services}
                 defaultService={selectedService}
                 onNav={setRoute}
+                loadingServices={loadingServices}
               />
             </motion.section>
           )}
@@ -440,7 +463,7 @@ function ServicesGrid({ services, selectedService, onSelect, onBook }) {
 }
 
  
-function BookingForm({ services, defaultService, onNav={setRoute} }) {
+function BookingForm({ services, defaultService, onNav, loadingServices }) {
   const [step, setStep] = useState("form");
   const [loading, setLoading] = useState(false);
   const [savedId, setSavedId] = useState(null);
@@ -549,6 +572,11 @@ function BookingForm({ services, defaultService, onNav={setRoute} }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm font-medium">Select Service</label>
+                 {loadingServices ? (
+    <div className="flex justify-center items-center py-4">
+      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+    </div>
+  ) : (
                 <select
                   className="mt-1 w-full p-2 rounded-xl border-slate-300 focus:ring-2 focus:ring-slate-900"
                   value={data.serviceId}
@@ -561,7 +589,7 @@ function BookingForm({ services, defaultService, onNav={setRoute} }) {
                       {s.name}
                     </option>
                   ))}
-                </select>
+                </select> )}
               </div>
               <div>
                 <label className="text-sm font-medium">Full Name</label>
